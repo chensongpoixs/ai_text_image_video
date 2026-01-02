@@ -20,5 +20,147 @@
   .text-gradient {
     @apply bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent;
   }
+
+  .tech-title {
+    @apply relative inline-block;
+    background: linear-gradient(135deg, #00f0ff 0%, #00d4ff 25%, #00a8ff 50%, #7c3aed 75%, #ec4899 100%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: tech-title-shimmer 4s linear infinite;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.6)) 
+            drop-shadow(0 0 30px rgba(124, 58, 237, 0.4))
+            drop-shadow(0 0 45px rgba(236, 72, 153, 0.3));
+    position: relative;
+    text-transform: uppercase;
+  }
+
+  .tech-title::before {
+    content: '一句话、创建一切·让创意无限';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(0, 240, 255, 0.8) 25%, 
+      rgba(124, 58, 237, 0.8) 50%, 
+      rgba(236, 72, 153, 0.8) 75%, 
+      transparent 100%);
+    background-size: 200% 100%;
+    animation: tech-title-scan 3s linear infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    pointer-events: none;
+    opacity: 0.9;
+  }
+
+  .tech-title::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      #00f0ff 25%, 
+      #7c3aed 50%, 
+      #ec4899 75%, 
+      transparent 100%);
+    background-size: 200% 100%;
+    animation: tech-title-underline 3s linear infinite;
+    opacity: 0.8;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.6),
+                0 0 20px rgba(124, 58, 237, 0.4),
+                0 0 30px rgba(236, 72, 153, 0.3);
+  }
+
+  .tech-text {
+    @apply relative inline-block;
+    background: linear-gradient(90deg, #00f0ff, #00d4ff, #00a8ff, #00f0ff);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: tech-shimmer 3s linear infinite;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.5)) drop-shadow(0 0 20px rgba(0, 240, 255, 0.3));
+    position: relative;
+  }
+
+  .tech-text::before {
+    content: '让创意无限可能';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 240, 255, 0.6) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: tech-scan 2.5s linear infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+}
+
+@keyframes tech-title-shimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes tech-title-scan {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes tech-title-underline {
+  0% {
+    background-position: -200% 0;
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    background-position: 200% 0;
+    opacity: 0.6;
+  }
+}
+
+@keyframes tech-shimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes tech-scan {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 

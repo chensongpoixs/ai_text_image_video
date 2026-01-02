@@ -99,16 +99,24 @@ class BaiduAdapter {
     if (response.data.data && response.data.data[0]) {
       // 百度返回的可能是 URL 或 base64
       const imageData = response.data.data[0];
-      if (imageData.url) {
-        return imageData.url;
-      }
+      
+      // 优先返回base64格式（避免CORS问题）
       if (imageData.b64_image) {
         return `data:image/png;base64,${imageData.b64_image}`;
       }
       if (imageData.image) {
-        return imageData.image.startsWith('data:')
-          ? imageData.image
-          : `data:image/png;base64,${imageData.image}`;
+        if (imageData.image.startsWith('data:')) {
+          return imageData.image;
+        }
+        // 如果是base64字符串，添加前缀
+        if (imageData.image.match(/^[A-Za-z0-9+/=]+$/)) {
+          return `data:image/png;base64,${imageData.image}`;
+        }
+      }
+      
+      // 如果没有base64，返回URL（可能需要处理CORS）
+      if (imageData.url) {
+        return imageData.url;
       }
     }
 

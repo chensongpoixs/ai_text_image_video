@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Settings, Sparkles } from 'lucide-react';
+import { Settings, Sparkles, Image, Video, MessageCircle } from 'lucide-react';
 import TextToImage from './components/TextToImage';
 import TextToVideo from './components/TextToVideo';
+import ChatToVideo from './components/ChatToVideo';
 import ApiConfig from './components/ApiConfig';
 import { getApiKey } from './utils/storage';
 
 function App() {
   const [showApiConfig, setShowApiConfig] = useState(false);
   const [hasApiKey, setHasApiKey] = useState(false);
+  const [activeTab, setActiveTab] = useState('images'); // 'images', 'video', 'chat'
 
   useEffect(() => {
     const apiKey = getApiKey() || import.meta.env.VITE_SILICONFLOW_API_KEY;
@@ -33,12 +35,10 @@ function App() {
                 <Sparkles className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h1 className="text-4xl font-bold text-gradient mb-1">
-                  AI 创意工坊
+                <h1 className="text-4xl font-bold tech-title mb-1">
+                  一句话、创建一切·让创意无限
                 </h1>
                 <p className="text-gray-300 text-sm font-medium tracking-wide">
-                  <span className="text-gradient font-semibold">一句话、创建一切</span>
-                  <span className="text-gray-500 mx-2">·</span>
                   <span className="text-cyan-400">文生图 & 文生视频</span>
                 </p>
               </div>
@@ -61,10 +61,60 @@ function App() {
           )}
         </header>
 
+        {/* 标签页导航 */}
+        <div className="mb-6 flex gap-2 border-b border-white/10">
+          <button
+            onClick={() => setActiveTab('images')}
+            className={`px-6 py-3 font-medium transition-all flex items-center gap-2 ${
+              activeTab === 'images'
+                ? 'text-cyan-400 border-b-2 border-cyan-400'
+                : 'text-gray-400 hover:text-gray-300'
+            }`}
+          >
+            <Image className="w-5 h-5" />
+            文生图
+          </button>
+          <button
+            onClick={() => setActiveTab('video')}
+            className={`px-6 py-3 font-medium transition-all flex items-center gap-2 ${
+              activeTab === 'video'
+                ? 'text-cyan-400 border-b-2 border-cyan-400'
+                : 'text-gray-400 hover:text-gray-300'
+            }`}
+          >
+            <Video className="w-5 h-5" />
+            视频生成
+          </button>
+          <button
+            onClick={() => setActiveTab('chat')}
+            className={`px-6 py-3 font-medium transition-all flex items-center gap-2 ${
+              activeTab === 'chat'
+                ? 'text-cyan-400 border-b-2 border-cyan-400'
+                : 'text-gray-400 hover:text-gray-300'
+            }`}
+          >
+            <MessageCircle className="w-5 h-5" />
+            聊天式视频
+          </button>
+        </div>
+
         {/* 功能区域 */}
-        <div className="grid lg:grid-cols-2 gap-6">
-          <TextToImage />
-          <TextToVideo />
+        <div className="space-y-6">
+          {activeTab === 'images' && (
+            <div className="max-w-4xl mx-auto">
+              <TextToImage />
+            </div>
+          )}
+          {activeTab === 'video' && (
+            <div className="max-w-4xl mx-auto">
+              <TextToVideo />
+            </div>
+          )}
+          {activeTab === 'chat' && (
+            <div className="max-w-4xl mx-auto">
+              <ChatToVideo />
+            </div>
+          )}
         </div>
 
         {/* 底部信息 */}
@@ -72,7 +122,7 @@ function App() {
           <p className="tracking-wide">
             <span className="text-gradient font-semibold">一句话、创建一切</span>
             <span className="text-gray-500 mx-2">·</span>
-            <span>让创意无限可能</span>
+            <span className="tech-text">让创意无限可能</span>
           </p>
         </footer>
       </div>
