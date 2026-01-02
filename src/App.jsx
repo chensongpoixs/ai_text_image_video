@@ -36,7 +36,7 @@ function App() {
               </div>
               <div>
                 <h1 className="text-4xl font-bold tech-title mb-1">
-                AI 助力创意落地、从构想到实现、轻松开启！！！
+                AI创意工坊助力创意落地、从构想到实现、轻松开启！！！
                 </h1>
                 <p className="text-gray-300 text-sm font-medium tracking-wide">
                   <span className="text-cyan-400">文生图 & 文生视频</span>
