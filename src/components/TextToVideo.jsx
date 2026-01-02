@@ -207,15 +207,17 @@ const TextToVideo = () => {
   };
 
   return (
-    <div className="glass rounded-2xl p-6 space-y-6">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="p-2 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg">
-          <Video className="w-6 h-6 text-white" />
+    <div className="glass rounded-2xl p-8 w-full">
+      <div className="flex items-center gap-3 mb-6">
+        <div className="p-2.5 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg shadow-lg">
+          <Video className="w-7 h-7 text-white" />
         </div>
-        <h2 className="text-2xl font-bold text-white">视频生成</h2>
+        <h2 className="text-3xl font-bold text-white">视频生成</h2>
       </div>
 
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-6">
+        {/* 左侧：表单输入区域 */}
+        <div className="space-y-4">
         <ProviderSelector
           onProviderChange={setProvider}
           type="video"
@@ -275,30 +277,14 @@ const TextToVideo = () => {
               上传图片
               {mode === VIDEO_MODES.IMAGE && <span className="text-red-400 ml-1">*</span>}
             </label>
-            {imagePreview ? (
-              <div className="relative">
-                <img
-                  src={imagePreview}
-                  alt="Preview"
-                  className="w-full h-auto max-h-64 object-contain rounded-lg border-2 border-purple-500/50"
-                />
-                <button
-                  onClick={handleRemoveImage}
-                  className="absolute top-2 right-2 p-1 bg-red-500/80 hover:bg-red-500 rounded-full text-white transition-colors"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-            ) : (
-              <div
-                onClick={() => fileInputRef.current?.click()}
-                className="border-2 border-dashed border-white/20 rounded-lg p-8 text-center cursor-pointer hover:border-purple-500/50 transition-colors"
-              >
-                <Upload className="w-8 h-8 mx-auto mb-2 text-gray-400" />
-                <p className="text-sm text-gray-400">点击上传图片</p>
-                <p className="text-xs text-gray-500 mt-1">支持 JPG、PNG 格式，最大 10MB</p>
-              </div>
-            )}
+            <div
+              onClick={() => fileInputRef.current?.click()}
+              className="border-2 border-dashed border-white/20 rounded-lg p-6 text-center cursor-pointer hover:border-purple-500/50 transition-colors bg-white/5"
+            >
+              <Upload className="w-8 h-8 mx-auto mb-2 text-gray-400" />
+              <p className="text-sm text-gray-400">点击上传图片</p>
+              <p className="text-xs text-gray-500 mt-1">支持 JPG、PNG 格式，最大 10MB</p>
+            </div>
             <input
               ref={fileInputRef}
               type="file"
@@ -328,8 +314,8 @@ const TextToVideo = () => {
                 ? '描述你想要生成的视频，例如：一只小猫在花园中玩耍，阳光明媚，流畅的动画'
                 : '描述你想要生成的视频，例如：一只小猫在花园中玩耍，阳光明媚，流畅的动画'
             }
-            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent resize-none"
-            rows="3"
+            className="w-full px-4 py-3.5 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent resize-none text-base"
+            rows="4"
           />
         </div>
 
@@ -341,8 +327,8 @@ const TextToVideo = () => {
             value={negativePrompt}
             onChange={(e) => setNegativePrompt(e.target.value)}
             placeholder="描述你不想要的内容，例如：模糊，抖动，低质量"
-            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent resize-none"
-            rows="2"
+            className="w-full px-4 py-3.5 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent resize-none text-base"
+            rows="3"
           />
         </div>
 
@@ -435,7 +421,7 @@ const TextToVideo = () => {
         <button
           onClick={handleGenerate}
           disabled={loading}
-          className="w-full py-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+          className="w-full py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl text-lg"
         >
           {loading ? (
             <>
@@ -464,29 +450,71 @@ const TextToVideo = () => {
             {error}
           </div>
         )}
+        </div>
 
-        {videoUrl && (
-          <div className="space-y-3">
-            <div className="relative rounded-lg overflow-hidden border-2 border-cyan-500/50">
-              <video
-                src={videoUrl}
-                controls
-                className="w-full h-auto max-h-[600px]"
-                autoPlay
-                loop
-              >
-                您的浏览器不支持视频播放
-              </video>
+        {/* 右侧：预览区域 */}
+        <div className="space-y-4">
+          {/* 图片预览 */}
+          {imagePreview && (
+            <div className="space-y-3">
+              <h3 className="text-sm font-medium text-gray-300 flex items-center gap-2">
+                <ImageIcon className="w-4 h-4" />
+                上传的图片
+              </h3>
+              <div className="relative rounded-lg overflow-hidden border-2 border-purple-500/50 bg-black/20">
+                <img
+                  src={imagePreview}
+                  alt="Preview"
+                  className="w-full h-auto max-h-[500px] object-contain"
+                />
+                <button
+                  onClick={handleRemoveImage}
+                  className="absolute top-2 right-2 p-1.5 bg-red-500/80 hover:bg-red-500 rounded-full text-white transition-colors shadow-lg"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
             </div>
-            <button
-              onClick={handleDownload}
-              className="w-full py-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
-            >
-              <Download className="w-4 h-4" />
-              下载视频
-            </button>
-          </div>
-        )}
+          )}
+
+          {/* 视频预览 */}
+          {videoUrl && (
+            <div className="space-y-3">
+              <h3 className="text-sm font-medium text-gray-300 flex items-center gap-2">
+                <Video className="w-4 h-4" />
+                生成的视频
+              </h3>
+              <div className="relative rounded-lg overflow-hidden border-2 border-cyan-500/50 bg-black/20">
+                <video
+                  src={videoUrl}
+                  controls
+                  className="w-full h-auto max-h-[700px] object-contain"
+                  autoPlay
+                  loop
+                >
+                  您的浏览器不支持视频播放
+                </video>
+              </div>
+              <button
+                onClick={handleDownload}
+                className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+              >
+                <Download className="w-5 h-5" />
+                下载视频
+              </button>
+            </div>
+          )}
+
+          {/* 空状态提示 */}
+          {!imagePreview && !videoUrl && (
+            <div className="flex items-center justify-center h-full min-h-[600px] bg-white/5 rounded-lg border-2 border-dashed border-white/10">
+              <div className="text-center text-gray-400">
+                <Video className="w-16 h-16 mx-auto mb-3 opacity-50" />
+                <p className="text-sm">视频预览将显示在这里</p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

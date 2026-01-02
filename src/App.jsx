@@ -36,7 +36,7 @@ function App() {
               </div>
               <div>
                 <h1 className="text-4xl font-bold tech-title mb-1">
-                  一句话、创建一切·让创意无限
+                AI 助力创意落地、从构想到实现、轻松开启！！！
                 </h1>
                 <p className="text-gray-300 text-sm font-medium tracking-wide">
                   <span className="text-cyan-400">文生图 & 文生视频</span>
@@ -101,12 +101,12 @@ function App() {
         {/* 功能区域 */}
         <div className="space-y-6">
           {activeTab === 'images' && (
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <TextToImage />
             </div>
           )}
           {activeTab === 'video' && (
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <TextToVideo />
             </div>
           )}

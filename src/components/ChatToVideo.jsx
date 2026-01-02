@@ -367,12 +367,12 @@ const ChatToVideo = () => {
   };
 
   return (
-    <div className="glass rounded-2xl p-6 space-y-6 h-full flex flex-col">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="p-2 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg">
-          <MessageCircle className="w-6 h-6 text-white" />
+    <div className="glass rounded-2xl p-8 space-y-6 w-full flex flex-col min-h-[600px]">
+      <div className="flex items-center gap-3 mb-6">
+        <div className="p-2.5 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg shadow-lg">
+          <MessageCircle className="w-7 h-7 text-white" />
         </div>
-        <h2 className="text-2xl font-bold text-white">聊天式视频生成</h2>
+        <h2 className="text-3xl font-bold text-white">聊天式视频生成</h2>
       </div>
 
       <div className="space-y-4">
@@ -464,24 +464,24 @@ const ChatToVideo = () => {
           <div className="flex gap-2">
             <button
               onClick={confirmImage}
-              className="flex-1 py-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
+              className="flex-1 py-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
             >
-              <Check className="w-4 h-4" />
+              <Check className="w-5 h-5" />
               确认，继续下一张
             </button>
             <button
               onClick={regenerateImage}
               disabled={loading}
-              className="flex-1 py-2 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 py-3 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
             >
-              <RotateCcw className="w-4 h-4" />
+              <RotateCcw className="w-5 h-5" />
               重新生成
             </button>
             <button
               onClick={skipImage}
-              className="px-4 py-2 bg-gray-600/50 hover:bg-gray-600/70 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
+              className="px-6 py-3 bg-gray-600/50 hover:bg-gray-600/70 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
             >
-              <X className="w-4 h-4" />
+              <X className="w-5 h-5" />
               跳过
             </button>
           </div>
@@ -609,29 +609,29 @@ const ChatToVideo = () => {
           </div>
           <button
             onClick={handleDownloadVideo}
-            className="w-full py-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+            className="w-full py-3.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-5 h-5" />
             下载视频
           </button>
         </div>
       )}
 
       {/* 输入区域 */}
-      <div className="flex gap-2">
+      <div className="flex gap-3">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={handleKeyPress}
           placeholder="告诉我你想要生成什么样的图片..."
-          className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+          className="flex-1 px-4 py-3.5 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-base"
           disabled={loading}
         />
         <button
           onClick={handleSend}
           disabled={loading || !input.trim()}
-          className="px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-8 py-3.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl text-base"
         >
           {loading ? (
             <Loader2 className="w-5 h-5 animate-spin" />

@@ -31,15 +31,17 @@
     animation: tech-title-shimmer 4s linear infinite;
     font-weight: 800;
     letter-spacing: 0.05em;
-    filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.6)) 
-            drop-shadow(0 0 30px rgba(124, 58, 237, 0.4))
-            drop-shadow(0 0 45px rgba(236, 72, 153, 0.3));
     position: relative;
     text-transform: uppercase;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    filter: drop-shadow(0 0 4px rgba(0, 240, 255, 0.8));
+    will-change: background-position;
   }
 
   .tech-title::before {
-    content: '一句话、创建一切·让创意无限';
+    content: 'AI 助力创意落地、从构想到实现、轻松开启！！！';
     position: absolute;
     top: 0;
     left: 0;
@@ -47,9 +49,9 @@
     height: 100%;
     background: linear-gradient(90deg, 
       transparent 0%, 
-      rgba(0, 240, 255, 0.8) 25%, 
-      rgba(124, 58, 237, 0.8) 50%, 
-      rgba(236, 72, 153, 0.8) 75%, 
+      rgba(0, 240, 255, 0.4) 25%, 
+      rgba(124, 58, 237, 0.4) 50%, 
+      rgba(236, 72, 153, 0.4) 75%, 
       transparent 100%);
     background-size: 200% 100%;
     animation: tech-title-scan 3s linear infinite;
@@ -57,7 +59,9 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     pointer-events: none;
-    opacity: 0.9;
+    opacity: 0.5;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 
   .tech-title::after {
@@ -75,10 +79,10 @@
       transparent 100%);
     background-size: 200% 100%;
     animation: tech-title-underline 3s linear infinite;
-    opacity: 0.8;
-    box-shadow: 0 0 10px rgba(0, 240, 255, 0.6),
-                0 0 20px rgba(124, 58, 237, 0.4),
-                0 0 30px rgba(236, 72, 153, 0.3);
+    opacity: 0.9;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.8),
+                0 0 24px rgba(124, 58, 237, 0.6),
+                0 0 36px rgba(236, 72, 153, 0.4);
   }
 
   .tech-text {
