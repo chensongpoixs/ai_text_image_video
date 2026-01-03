@@ -4,6 +4,7 @@
 
 export const PROVIDERS = {
   OPENAI: 'openai',
+  COMFYUI: 'comfyui',
   STABILITY_AI: 'stability_ai',
   REPLICATE: 'replicate',
   HUGGINGFACE: 'huggingface',
@@ -28,6 +29,18 @@ export const PROVIDER_CONFIG = {
     },
     authType: 'bearer',
     website: 'https://openai.com',
+  },
+  [PROVIDERS.COMFYUI]: {
+    name: 'ComfyUI',
+    nameEn: 'ComfyUI',
+    description: '强大的节点式 AI 工作流平台',
+    baseUrl: 'http://localhost:8188', // 默认本地地址
+    supports: {
+      image: true,
+      video: true, // 支持视频生成工作流
+    },
+    authType: 'none',
+    website: 'https://github.com/comfyanonymous/ComfyUI',
   },
   [PROVIDERS.STABILITY_AI]: {
     name: 'Stability AI',

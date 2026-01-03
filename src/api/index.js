@@ -9,6 +9,7 @@ import replicateAdapter from './providers/replicate';
 import huggingfaceAdapter from './providers/huggingface';
 import baiduAdapter from './providers/baidu';
 import alibabaAdapter from './providers/alibaba';
+import comfyuiAdapter from './providers/comfyui';
 
 /**
  * 统一 API 接口层
@@ -26,6 +27,7 @@ class UnifiedAPI {
       [PROVIDERS.HUGGINGFACE]: huggingfaceAdapter,
       [PROVIDERS.BAIDU]: baiduAdapter,
       [PROVIDERS.ALIBABA]: alibabaAdapter,
+      [PROVIDERS.COMFYUI]: comfyuiAdapter,
     };
   }
 

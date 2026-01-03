@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Settings, Sparkles, Image, Video, MessageCircle } from 'lucide-react';
+import { Settings, Sparkles, Image, Video, MessageCircle, Github } from 'lucide-react';
 import TextToImage from './components/TextToImage';
 import TextToVideo from './components/TextToVideo';
 import ChatToVideo from './components/ChatToVideo';
 import ApiConfig from './components/ApiConfig';
 import { getApiKey } from './utils/storage';
+import { GITHUB_URL } from './constants/config';
 
 function App() {
   const [showApiConfig, setShowApiConfig] = useState(false);
@@ -43,13 +44,25 @@ function App() {
                 </p>
               </div>
             </div>
-            <button
-              onClick={() => setShowApiConfig(true)}
-              className="glass px-4 py-2 rounded-lg hover:bg-white/20 transition-all duration-200 flex items-center gap-2 text-white"
-            >
-              <Settings className="w-5 h-5" />
-              <span className="hidden sm:inline">API 配置</span>
-            </button>
+            <div className="flex items-center gap-2">
+              <a
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass px-4 py-2 rounded-lg hover:bg-white/20 transition-all duration-200 flex items-center gap-2 text-white"
+                title="GitHub"
+              >
+                <Github className="w-5 h-5" />
+                <span className="hidden sm:inline">GitHub</span>
+              </a>
+              <button
+                onClick={() => setShowApiConfig(true)}
+                className="glass px-4 py-2 rounded-lg hover:bg-white/20 transition-all duration-200 flex items-center gap-2 text-white"
+              >
+                <Settings className="w-5 h-5" />
+                <span className="hidden sm:inline">API 配置</span>
+              </button>
+            </div>
           </div>
 
           {!hasApiKey && (
@@ -119,11 +132,22 @@ function App() {
 
         {/* 底部信息 */}
         <footer className="mt-12 text-center text-gray-400 text-sm">
-          <p className="tracking-wide">
+          <p className="tracking-wide mb-4">
             <span className="text-gradient font-semibold">一句话、创建一切</span>
             <span className="text-gray-500 mx-2">·</span>
             <span className="tech-text">让创意无限可能</span>
           </p>
+          <div className="flex items-center justify-center gap-2">
+            <a
+              href={GITHUB_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 glass rounded-lg hover:bg-white/20 transition-all duration-200 text-gray-300 hover:text-white group"
+            >
+              <Github className="w-5 h-5 group-hover:text-cyan-400 transition-colors" />
+              <span className="font-medium">GitHub</span>
+            </a>
+          </div>
         </footer>
       </div>
 
